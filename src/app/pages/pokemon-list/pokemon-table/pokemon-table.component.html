@@ -1,0 +1,15 @@
+<p-table [value]="pokemon">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of headers">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-pokemon>
+        <tr>
+            <td>{{pokemon.name}}</td>
+            <td>{{pokemon.url}}</td>
+        </tr>
+    </ng-template>
+</p-table>

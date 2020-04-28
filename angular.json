@@ -10,13 +10,14 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/pokemon-dictionary",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -54,6 +55,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -84,7 +89,10 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.sass"
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova-light/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -136,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "pokemon-dictionary"
+  "defaultProject": "pokemon-dictionary",
+  "cli": {
+    "analytics": "6d385ad8-d27a-42d0-a7ff-f299155bfaa8"
+  }
 }
