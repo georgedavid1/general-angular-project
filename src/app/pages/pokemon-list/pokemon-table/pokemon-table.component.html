@@ -7,11 +7,28 @@
             </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-pokemon>
+            <tr>
+                <td>{{pokemon.id}}</td>
+                <td><img src="{{pokemon.img}}"></td>
+                <td>{{pokemon.name}}</td>
+                <!-- attack -->
+                <td>{{pokemon.attack}}</td>
+                <!-- defense -->
+                <td>{{pokemon.defense}}</td>
+                <!-- speed -->
+                <td>{{pokemon.speed}}</td>
+                <!-- special attack -->
+                <td>{{pokemon.attack}}</td>
+                <!-- special defense -->
+                <td>{{pokemon.defense}}</td>
+                <!-- hp -->
+                <td>{{pokemon.weight}}</td>
+                <!-- types -->
+                <td>
+                    <div *ngIf="pokemon.type2 === 0; else twoTypes">{{pokemon.type1.type.name}}</div>
+                    <ng-template #twoTypes>{{pokemon.type1.type.name}}/{{pokemon.type2.type.name}}</ng-template>
+                </td>
+            </tr>
+        </ng-template>
 </p-table>

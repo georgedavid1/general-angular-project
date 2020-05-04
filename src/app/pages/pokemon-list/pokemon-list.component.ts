@@ -28,16 +28,40 @@ export class PokemonListComponent {
       forkJoin
         data.results.forEach((element:any) => {
             this.httpClient.get(element.url).subscribe((data:any)=>{
-              const {id, name} = data;
-              console.log(id + " " +  name)
-              this.pokemonList.push({id, name});
+              let {
+                id,
+                name,
+                sprites: { front_default: img},
+                stats: [
+                { base_stat: speed },
+                { base_stat: specialAttack },
+                { base_stat: specialDefense },
+                { base_stat: defense },
+                { base_stat: attack },
+                { base_stat: hp }
+              ], 
+              types: [
+                type1,
+                type2 = 0,
+                //destructuring an array is weird. 
+              ],
+              weight} = data;
+              this.pokemonList.push({id, name, img, speed, specialAttack, specialDefense, defense, attack, hp, type1, type2, weight});
             });
         });
     });
 
     this.headers = [
       { field: 'id', header: 'ID' },
-      { field: 'name', header: 'Name' }
+      { field: 'sprites.front_default', header: 'Photo' },
+      { field: 'name', header: 'Name' },
+      { field: 'attack', header: 'Attack' },
+      { field: 'defense', header: 'Defense' },
+      { field: 'speed', header: 'Speed' },
+      { field: 'specialAttack', header: 'Special Attack' },
+      { field: 'specialDefense', header: 'Special Defense' },
+      { field: 'hp', header: 'HP' },
+      { field: 'type', header: 'Type' }
     ];
   }
 
