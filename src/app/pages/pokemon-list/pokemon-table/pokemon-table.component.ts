@@ -8,13 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PokemonTableComponent {
 
   @Input() pokemon;
-  @Input() headers;
+  @Input() cols;
 
-  private columns: any[];
   constructor() {
-    this.columns = [
-      { field: 'name', header: 'Name' },
-      { field: 'url', header: 'URL' }
-    ];
+
   }
 }

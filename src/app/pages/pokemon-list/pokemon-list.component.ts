@@ -28,15 +28,16 @@ export class PokemonListComponent {
       forkJoin
         data.results.forEach((element:any) => {
             this.httpClient.get(element.url).subscribe((data:any)=>{
-              this.pokemonList.push(data);
+              const {id, name} = data;
+              console.log(id + " " +  name)
+              this.pokemonList.push({id, name});
             });
         });
     });
 
     this.headers = [
       { field: 'id', header: 'ID' },
-      { field: 'name', header: 'Name' },
-      { field: 'photo', header: 'Photo' }
+      { field: 'name', header: 'Name' }
     ];
   }
 
