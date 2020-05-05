@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { mergeMap, map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
-export class Data {
-  results:any[];
-}
+import { MessageService } from 'src/app/shared/services/message.service';
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -13,19 +12,22 @@ export class Data {
 export class PokemonListComponent {
 
   title: string = 'pokemon-dictionary';
-  pokemon: any;
   pokemonList = [];
+  msgs = [];
   sales: any[];
   headers: any[];
-  test: any;
+
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private messageService: MessageService
   ) {
+    this.messageService.getMessage().subscribe((messages) => {
+      this.msgs.push(messages);
+    });
     //1) nested subsrbe. =
     //2) after that works try merging
     this.httpClient.get('https://pokeapi.co/api/v2/pokemon')
     .subscribe((data: any)=>{
-      forkJoin
         data.results.forEach((element:any) => {
             this.httpClient.get(element.url).subscribe((data:any)=>{
               let {
@@ -43,7 +45,6 @@ export class PokemonListComponent {
               types: [
                 type1,
                 type2 = 0,
-                //destructuring an array is weird. 
               ],
               weight} = data;
               this.pokemonList.push({id, name, img, speed, specialAttack, specialDefense, defense, attack, hp, type1, type2, weight});
@@ -65,8 +66,7 @@ export class PokemonListComponent {
     ];
   }
 
+  addAMessage() {
+    this.messageService.sendMessage('i think it working');
+  }
 }
-// .results.forEach(element => {
-//   // console.log('ELEMENT ' + JSON.stringify(element));
-//   this.httpClient.get(element.url)
-// }))

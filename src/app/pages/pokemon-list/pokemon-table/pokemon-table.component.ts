@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-pokemon-table',
@@ -10,7 +11,13 @@ export class PokemonTableComponent {
   @Input() pokemon;
   @Input() cols;
 
-  constructor() {
+  public messages = [];
 
+  constructor(
+    private messageService: MessageService
+  ) {
+    this.messageService.getMessage().subscribe(message => {
+      this.messages.push(message);
+    })
   }
 }

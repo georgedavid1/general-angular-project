@@ -2,7 +2,12 @@
     <b>Pokemon List</b>
 </div>
 <div>
-    <b>Filter goes here</b>
+    <b>Filter goes here <button (click)="addAMessage()">Button</button></b>
+</div>
+<div>
+    <ul>
+        <li *ngFor="let msg of msgs">{{msg}}</li>
+    </ul>
 </div>
 Unable to filter  by stats. 
 Use destructuring to create new object
