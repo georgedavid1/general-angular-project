@@ -1,6 +1,3 @@
-<ul>
-    <li *ngFor="let msg of messages">{{msg}}</li>
-</ul>
 <p-table [columns]="cols" [value]="pokemon" sortField="id">
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -31,6 +28,9 @@
                 <td>
                     <div *ngIf="pokemon.type2 === 0; else twoTypes">{{pokemon.type1.type.name}}</div>
                     <ng-template #twoTypes>{{pokemon.type1.type.name}}/{{pokemon.type2.type.name}}</ng-template>
+                </td>
+                <td>
+                    <button (click)="selectName(pokemon.name)">Show the name!</button>
                 </td>
             </tr>
         </ng-template>

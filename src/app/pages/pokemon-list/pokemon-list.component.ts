@@ -62,7 +62,8 @@ export class PokemonListComponent {
       { field: 'specialAttack', header: 'Special Attack' },
       { field: 'specialDefense', header: 'Special Defense' },
       { field: 'hp', header: 'HP' },
-      { field: 'type', header: 'Type' }
+      { field: 'type', header: 'Type' },
+      { field: 'button', header: 'Button'}
     ];
   }
 

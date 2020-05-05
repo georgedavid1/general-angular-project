@@ -11,13 +11,11 @@ export class PokemonTableComponent {
   @Input() pokemon;
   @Input() cols;
 
-  public messages = [];
-
   constructor(
     private messageService: MessageService
-  ) {
-    this.messageService.getMessage().subscribe(message => {
-      this.messages.push(message);
-    })
+  ) {}
+
+  selectName(name) {
+    this.messageService.sendMessage(name);
   }
 }
