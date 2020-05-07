@@ -1,3 +1,8 @@
+<input  type="text" id="ideaInput" [(ngModel)]="ideaInput"/>
+<button (click)="saveIdea(ideaInput)">Save</button> {{ideaInput}}
+<ul>
+    <li *ngFor="let idea of ideas">{{idea.idea}}</li>
+</ul>
 <ul>
     <li>make this list be created dynamically
         <ul>
