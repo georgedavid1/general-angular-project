@@ -1,8 +1,33 @@
-<input  type="text" id="ideaInput" [(ngModel)]="ideaInput"/>
-<button (click)="saveIdea(ideaInput)">Save</button> {{ideaInput}}
-<ul>
-    <li *ngFor="let idea of ideas">{{idea.idea}}</li>
-</ul>
+<div class="idea-component">
+    <div class="idea-component__form">
+        <form [formGroup]="ideaForm">
+            <input formControlName="idea">
+            <div formArrayName="subPoints"
+            *ngFor="let idea of ideaForm.get('subPoints')?.controls; let i = index;">
+                <div [formGroupName]="i">
+                    <input formControlName="subPoint">
+                </div>
+                <button (click)="removeIdea(i)">Remove Idea</button>
+            </div>
+            <button (click)="addIdea()">Add</button>
+        </form>
+        <button (click)="saveIdea()" [disabled]="!ideaForm.valid">Save Idea</button>
+    </div>
+    <div class="idea-component__list">
+        <ul>
+            <li *ngFor="let idea of ideasList">{{idea.idea}}
+                <div *ngIf="idea.subPoints.length > 0">
+                    <ul *ngFor="let point of idea.subPoints">
+                        <li>{{point.subPoint}}</li>
+                    </ul>
+                </div>
+                <!-- <ul *ngIf="idea.subPoint">
+                    <li *ngFor="let subPoint of idea.subPoint">{{subPoint}}</li>
+                </ul> -->
+            </li>
+        </ul>
+    </div>
+</div>
 <ul>
     <li>make this list be created dynamically
         <ul>

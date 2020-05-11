@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
-export class Idea {
-  id: string;
-  idea: string;
-}
+import { Idea } from './../../shared/models/idea.model';
+import { analytics } from 'firebase';
+import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +14,20 @@ export class FutureService {
   ) { }
 
   getIdeas() {
-    return this.firestore.collection('idea').snapshotChanges();
+    //make sure it returns idea object
+    return this.firestore.collection('idea').valueChanges();
   }
 
-  createIdea(idea: string){
-    return this.firestore.collection('idea').add({idea: idea});
+  createIdea(idea:Idea): void {
+    this.firestore.collection('idea').add(idea);
   }
 
-  updateIdea(idea: Idea){
+  updateIdea(idea): void{
     delete idea.id;
     this.firestore.doc('idea/' + idea.id).update(idea);
   }
 
-  deleteIdea(policyId: string){
-    this.firestore.doc('idea/' + policyId).delete();
+  deleteIdea(id: string): void{
+    this.firestore.doc('idea/' + id).delete();
   }
 }
