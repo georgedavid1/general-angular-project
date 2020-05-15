@@ -18,8 +18,17 @@ export class FutureService {
     return this.firestore.collection('idea').valueChanges();
   }
 
+  getIdea(id: String){
+    //make sure it returns idea object
+    return this.firestore.collection('idea').valueChanges();
+  }
+
   createIdea(idea:Idea): void {
-    this.firestore.collection('idea').add(idea);
+    idea.id = this.firestore.createId();
+    idea.creationDate = new Date();
+    idea.completed = false;
+    console.log("GUESS WHO HAS AN ID?! " + JSON.stringify(idea))
+    // this.firestore.collection('idea').add(idea);
   }
 
   updateIdea(idea): void{

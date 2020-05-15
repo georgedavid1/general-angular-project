@@ -43,8 +43,8 @@ export class FutureComponent implements OnInit {
     this.subPoints.removeAt(i);
   }
   saveIdea(){
-    // console.log(JSON.stringify(this.ideaForm.value));
-    this.futureService.createIdea(this.ideaForm.value);
-    this.ideaForm.reset();
+    console.log(JSON.stringify(this.ideaForm.value));
+    // this.futureService.createIdea(this.ideaForm.value);
+    // this.ideaForm.reset();
   }
 }

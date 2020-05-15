@@ -1,4 +1,25 @@
 <p>home works!</p>
+
+<p-table [value]="books">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Price In Dollars</th>          
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-book>
+      <tr>
+          <td>{{book.name}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.price}}</td>          
+      </tr>
+  </ng-template>
+</p-table>
+<span class="ui-float-label">
+        <input id="float-input" type="text" size="30" pInputText> 
+        <label for="float-input">Username</label>
+    </span>
 <div appRenderTest>
     test
 </div>

@@ -4,11 +4,13 @@ import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.componen
 import { HomeComponent } from './pages/home/home.component';
 import { FutureComponent } from './pages/future/future.component';
 import { BoardComponent } from './board/board.component';
+import { AngularPracticeComponent } from './pages/angular-practice/angular-practice.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'future', component: FutureComponent },
   { path: 'standup', component: BoardComponent },
+  { path: 'practice', component: AngularPracticeComponent },  
   { path: 'pokemon-list', component: PokemonListComponent },
 ];
 
