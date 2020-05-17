@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PokemonListComponent } from './pages/pokemon-list/pokemon-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FutureComponent } from './pages/future/future.component';
-import { BoardComponent } from './board/board.component';
+import { BoardComponent } from './pages/board/board.component';
 import { AngularPracticeComponent } from './pages/angular-practice/angular-practice.component';
 
 const routes: Routes = [

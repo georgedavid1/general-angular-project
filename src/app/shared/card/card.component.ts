@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-card',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-
+  @Input() header;
+  
   constructor() { }
 
   ngOnInit(): void {
