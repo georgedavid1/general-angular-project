@@ -4,11 +4,7 @@ import { Directive, Renderer2, ElementRef } from '@angular/core';
   selector: '[appRenderTest]'
 })
 export class RenderTestDirective {
-
-  constructor(
-    private renderer: Renderer2,
-    private element: ElementRef
-  ) { 
+  constructor(private renderer: Renderer2, private element: ElementRef) {
     this.renderer.setStyle(this.element.nativeElement, 'color', 'blue');
     this.renderer.createText('look, text!');
     this.renderer.addClass(this.element.nativeElement, 'lookingClass');
@@ -19,5 +15,4 @@ export class RenderTestDirective {
     this.renderer.appendChild(p, text);
     this.renderer.appendChild(this.element.nativeElement, p);
   }
-
 }

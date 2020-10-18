@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  books = [{name:'test', author: 'face', price:'but hey though'},
-           {name:'test', author: 'face', price:'but hey though'}]
-  
-  constructor() {
-  }
+  books = [
+    { name: 'test', author: 'face', price: 'but hey though' },
+    { name: 'test', author: 'face', price: 'but hey though' }
+  ];
 }

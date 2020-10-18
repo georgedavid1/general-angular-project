@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FutureService } from './future.service';
 import { Idea } from 'src/app/shared/models/idea.model';
-import { FormGroup, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {
+  FormGroup,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-future',
   templateUrl: './future.component.html',
   styleUrls: ['./future.component.scss']
 })
-export class FutureComponent implements OnInit {
+export class FutureComponent {
   ideaForm: FormGroup;
   subPoints: FormArray;
   ideasList = [];
@@ -17,7 +23,7 @@ export class FutureComponent implements OnInit {
   constructor(
     private futureService: FutureService,
     private formBuilder: FormBuilder
-  ) { 
+  ) {
     this.ideaForm = this.formBuilder.group({
       idea: new FormControl('', Validators.required),
       subPoints: this.formBuilder.array([this.createIdea()])
@@ -27,12 +33,10 @@ export class FutureComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
   createIdea(): FormGroup {
     return this.formBuilder.group({
       subPoint: new FormControl('', Validators.required)
-    })
+    });
   }
   addIdea(): void {
     this.subPoints = this.ideaForm.get('subPoints') as FormArray;
@@ -42,7 +46,7 @@ export class FutureComponent implements OnInit {
     this.subPoints = this.ideaForm.get('subPoints') as FormArray;
     this.subPoints.removeAt(i);
   }
-  saveIdea(){
+  saveIdea(): void {
     console.log(JSON.stringify(this.ideaForm.value));
     // this.futureService.createIdea(this.ideaForm.value);
     // this.ideaForm.reset();

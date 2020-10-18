@@ -10,8 +10,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent {
-
-  title: string = 'pokemon-dictionary';
+  title = 'pokemon-dictionary';
   pokemonList = [];
   msgs = [];
   sales: any[];
@@ -26,31 +25,43 @@ export class PokemonListComponent {
     });
     //1) nested subsrbe. =
     //2) after that works try merging
-    this.httpClient.get('https://pokeapi.co/api/v2/pokemon')
-    .subscribe((data: any)=>{
-        data.results.forEach((element:any) => {
-            this.httpClient.get(element.url).subscribe((data:any)=>{
-              let {
-                id,
-                name,
-                sprites: { front_default: img},
-                stats: [
+    this.httpClient
+      .get('https://pokeapi.co/api/v2/pokemon')
+      .subscribe((data: any) => {
+        data.results.forEach((element: any) => {
+          this.httpClient.get(element.url).subscribe((data: any) => {
+            const {
+              id,
+              name,
+              sprites: { front_default: img },
+              stats: [
                 { base_stat: speed },
                 { base_stat: specialAttack },
                 { base_stat: specialDefense },
                 { base_stat: defense },
                 { base_stat: attack },
                 { base_stat: hp }
-              ], 
-              types: [
-                type1,
-                type2 = 0,
               ],
-              weight} = data;
-              this.pokemonList.push({id, name, img, speed, specialAttack, specialDefense, defense, attack, hp, type1, type2, weight});
+              types: [type1, type2 = 0],
+              weight
+            } = data;
+            this.pokemonList.push({
+              id,
+              name,
+              img,
+              speed,
+              specialAttack,
+              specialDefense,
+              defense,
+              attack,
+              hp,
+              type1,
+              type2,
+              weight
             });
+          });
         });
-    });
+      });
 
     this.headers = [
       { field: 'id', header: 'ID' },
@@ -63,7 +74,7 @@ export class PokemonListComponent {
       { field: 'specialDefense', header: 'Special Defense' },
       { field: 'hp', header: 'HP' },
       { field: 'type', header: 'Type' },
-      { field: 'button', header: 'Button'}
+      { field: 'button', header: 'Button' }
     ];
   }
 

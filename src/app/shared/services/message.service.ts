@@ -6,13 +6,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MessageService {
   private behaviorSubject$ = new BehaviorSubject<any>('here I am!');
-  constructor() { }
 
   sendMessage(message: string) {
     this.behaviorSubject$.next(message);
-  } 
+  }
 
-  clearMessages(){
+  clearMessages() {
     this.behaviorSubject$.next('clear messages clicked');
   }
 

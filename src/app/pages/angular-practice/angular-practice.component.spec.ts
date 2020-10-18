@@ -8,9 +8,8 @@ describe('AngularPracticeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularPracticeComponent ]
-    })
-    .compileComponents();
+      declarations: [AngularPracticeComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

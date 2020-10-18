@@ -25,6 +25,7 @@ import { CardComponent } from './shared/card/card.component';
 import { CardModule } from 'primeng/card';
 import { DropdownMenuComponent } from './shared/dropdown-menu/dropdown-menu.component';
 import { MouseoverDirective } from './shared/dropdown-menu/mouseover/mouseover.directive';
+import { ShowMenuDirective } from './shared/dropdown-menu/showMenu/show-menu.directive';
 //TODO move some components to common module.
 //TODO when the time comes split out app into separate modules
 //TODO Lazily load that sh*t
@@ -43,7 +44,8 @@ import { MouseoverDirective } from './shared/dropdown-menu/mouseover/mouseover.d
     AngularPracticeComponent,
     CardComponent,
     DropdownMenuComponent,
-    MouseoverDirective
+    MouseoverDirective,
+    ShowMenuDirective
   ],
   imports: [
     BrowserModule,
@@ -62,4 +64,4 @@ import { MouseoverDirective } from './shared/dropdown-menu/mouseover/mouseover.d
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {}
