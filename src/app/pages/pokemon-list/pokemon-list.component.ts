@@ -11,6 +11,14 @@ import {
 import { forkJoin, of } from 'rxjs';
 import { MessageService } from 'src/app/shared/services/message.service';
 
+type PokemonObject = {
+  results: {
+    url: string
+  }
+}
+type PokemonUrl = {
+  url: any
+}
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -35,7 +43,7 @@ export class PokemonListComponent {
     this.httpClient
       .get('https://pokeapi.co/api/v2/pokemon')
       .pipe(
-        map((x) => x.results),
+        map((x: PokemonObject) => x.results),
         map((y) => {
           this.httpClient.get(y.url);
         })
