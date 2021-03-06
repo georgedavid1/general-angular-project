@@ -1,9 +1,24 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { mergeMap, map } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
+import {
+  mergeMap,
+  map,
+  concatAll,
+  tap,
+  switchMap,
+  flatMap
+} from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
 import { MessageService } from 'src/app/shared/services/message.service';
 
+type PokemonObject = {
+  results: {
+    url: string
+  }
+}
+type PokemonUrl = {
+  url: any
+}
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -27,40 +42,47 @@ export class PokemonListComponent {
     //2) after that works try merging
     this.httpClient
       .get('https://pokeapi.co/api/v2/pokemon')
+      .pipe(
+        map((x: PokemonObject) => x.results),
+        map((y) => {
+          this.httpClient.get(y.url);
+        })
+      )
       .subscribe((data: any) => {
-        data.results.forEach((element: any) => {
-          this.httpClient.get(element.url).subscribe((data: any) => {
-            const {
-              id,
-              name,
-              sprites: { front_default: img },
-              stats: [
-                { base_stat: speed },
-                { base_stat: specialAttack },
-                { base_stat: specialDefense },
-                { base_stat: defense },
-                { base_stat: attack },
-                { base_stat: hp }
-              ],
-              types: [type1, type2 = 0],
-              weight
-            } = data;
-            this.pokemonList.push({
-              id,
-              name,
-              img,
-              speed,
-              specialAttack,
-              specialDefense,
-              defense,
-              attack,
-              hp,
-              type1,
-              type2,
-              weight
-            });
-          });
-        });
+        console.log('yeller ' + JSON.stringify(data));
+        // data.results.forEach((element: any) => {
+        //   this.httpClient.get(element.url).subscribe((data: any) => {
+        //     const {
+        //       id,
+        //       name,
+        //       sprites: { front_default: img },
+        //       stats: [
+        //         { base_stat: speed },
+        //         { base_stat: specialAttack },
+        //         { base_stat: specialDefense },
+        //         { base_stat: defense },
+        //         { base_stat: attack },
+        //         { base_stat: hp }
+        //       ],
+        //       types: [type1, type2 = 0],
+        //       weight
+        //     } = data;
+        //     this.pokemonList.push({
+        //       id,
+        //       name,
+        //       img,
+        //       speed,
+        //       specialAttack,
+        //       specialDefense,
+        //       defense,
+        //       attack,
+        //       hp,
+        //       type1,
+        //       type2,
+        //       weight
+        //     });
+        //   });
+        // });
       });
 
     this.headers = [
